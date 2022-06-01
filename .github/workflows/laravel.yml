@@ -28,6 +28,17 @@ jobs:
       run: zip -r deploy.zip . -x '*.git*'
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v20
+    - name: Sync Database
+      env:
+          RDS_PORT: 3306
+          RDS_HOSTNAME: aa11qm9tbbm33mc.ciyggvszmd6k.sa-east-1.rds.amazonaws.com
+          RDS_DB_NAME: aa11qm9tbbm33mc
+          RDS_USERNAME: admin
+          RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
+      run: |
+        php artisan site:refresh
+        php artisan migrate
+    - name: Prepare deployment
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -37,13 +48,4 @@ jobs:
         region: sa-east-1
         deployment_package: deploy.zip
         use_existing_version_if_available: true
-      env:
-        DB_CONNECTION: mysql
-        RDS_HOSTNAME: aa11qm9tbbm33mc.ciyggvszmd6k.sa-east-1.rds.amazonaws.com
-        RDS_DB_NAME: aa11qm9tbbm33mc
-        RDS_USERNAME: admin
-        RDS_PASSWORD: 5FNPW#Xn5DEAP5W
-    - name: Sync Database
-      run: |
-          php artisan site:refresh
-          php artisan migrate
+      
