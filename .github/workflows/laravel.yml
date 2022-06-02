@@ -8,15 +8,8 @@ on:
 
 jobs:
   Deyployment:
-
+  
     runs-on: ubuntu-latest
-    env:
-        DB_CONNECTION: mysql
-        DB_HOST: playtennisdb.ciyggvszmd6k.sa-east-1.rds.amazonaws.com
-        DB_PORT: 3306
-        DB_DATABASE: playtennis
-        DB_USERNAME: playtennis
-        DB_PASSWORD: 5FNPW!Xn5DEAP5W
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
@@ -36,8 +29,8 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: PlayTennis Backend
-        environment_name: Playtennisbackend-env
+        application_name: Playtennisbackend-env
+        environment_name: playtennisapi-env
         version_label: 1
         region: sa-east-1
         deployment_package: deploy.zip
