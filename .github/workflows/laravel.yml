@@ -21,13 +21,15 @@ jobs:
     - name: Install Dependencies
       run: composer install
     - name: Generate key and set env
+      env: 
+        DB_PASSWS: ${{ secrets.DB_PASSWORD }}
       run: |
         php artisan key:generate
         php artisan env:set DB_PORT=3306
         php artisan env:set DB_HOST=playtennisdb.ciyggvszmd6k.sa-east-1.rds.amazonaws.com
         php artisan env:set DB_DATABASE=playtennis
         php artisan env:set DB_USERNAME=playtennis
-        php artisan env:set DB_PASSWORD= ${{ secrets.DB_PASSWORD }}
+        php artisan env:set DB_PASSWORD=$DB_PASSWS
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Generate deployment package
