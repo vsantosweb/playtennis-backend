@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  laravel-tests:
+  Deyployment:
 
     runs-on: ubuntu-latest
     env:
@@ -33,8 +33,12 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
+        DB_CONNECTION: mysql
+        DB_HOST: playtennisdb.ciyggvszmd6k.sa-east-1.rds.amazonaws.com
+        DB_PORT: 3306
+        DB_DATABASE: playtennis
+        DB_USERNAME: playtennis
+        DB_PASSWORD: 5FNPW!Xn5DEAP5W
       run: vendor/bin/phpunit --testdox
     - name: Sync Database
       run: |
