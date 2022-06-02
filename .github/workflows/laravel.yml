@@ -38,18 +38,10 @@ jobs:
         php artisan env:set DB_PASSWORD=5FNPWhXn5DEAP5WOplV
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DB_CONNECTION: mysql
-        DB_HOST: playtennisdb.ciyggvszmd6k.sa-east-1.rds.amazonaws.com
-        DB_PORT: 3306
-        DB_DATABASE: playtennis
-        DB_USERNAME: playtennis
-        DB_PASSWORD: 5FNPW!Xn5DEAP5W
-      run: vendor/bin/phpunit --testdox
     - name: Sync Database
       run: |
-          cat .env
+          php artisan migrate
+          php atisan site:refresh
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
     - name: Deploy to EB
