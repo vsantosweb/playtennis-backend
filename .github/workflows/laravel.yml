@@ -33,7 +33,7 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Sync Database
       run: |
-          php artisan migrate
+          cat .env
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
     - name: Deploy to EB
