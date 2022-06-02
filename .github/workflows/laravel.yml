@@ -20,13 +20,6 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-#       env:
-#         checkout: actions/checkout@v3
-#         RDS_PORT: 3306
-#         RDS_HOSTNAME: aa11qm9tbbm33mc.ciyggvszmd6k.sa-east-1.rds.amazonaws.com
-#         RDS_DB_NAME: aa11qm9tbbm33mc
-#         RDS_USERNAME: admin
-#         RDS_PASSWORD: 5FNPW#Xn5DEAP5W
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
