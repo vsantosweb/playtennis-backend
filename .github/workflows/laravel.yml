@@ -52,7 +52,7 @@ jobs:
       run: |
         php artisan key:generate
         php artisan env:set DB_PORT=3306
-        php artisan env:set DB_HOST=playtennisdb.ciyggvszmd6k.sa-east-1.rds.amazonaws.com
+        php artisan env:set DB_HOST=127.0.0.1
         php artisan env:set DB_DATABASE=playtennis
         php artisan env:set DB_USERNAME=playtennis
         php artisan env:set DB_PASSWORD=5FNPWhXn5DEAP5WOplV
