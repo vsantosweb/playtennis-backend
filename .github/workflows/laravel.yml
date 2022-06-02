@@ -39,4 +39,4 @@ jobs:
         environment_name: Playtennisbackend-env
         version_label: 1
         region: sa-east-1
-        #deployment_package: deploy.zip
+        deployment_package: deploy.zip
