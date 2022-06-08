@@ -22,13 +22,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('public')->group(function () {
     Route::get('gyms', [SiteController::class, 'gyms']);
-    Route::get('gyms/{gym}', [SiteController::class, 'showGym']);
+    Route::get('gyms/{slug}', [SiteController::class, 'showGym']);
     Route::get('partners', [SiteController::class, 'partners']);
     Route::get('workouts', [SiteController::class, 'workouts']);
     Route::get('subscriptions', [SiteController::class, 'subscriptions']);
     Route::get('leases', [SiteController::class, 'leases']);
     Route::get('business', [SiteController::class, 'business']);
+    Route::get('products/{slug}', [SiteController::class, 'showProduct']);
+
     Route::get('contact', [SiteController::class, 'business']);
+    
+    Route::post('workouts/ebook-download', [SiteController::class, 'workoutEbookDownload']);
 
     Route::prefix('customers')->group(function(){
         Route::post('/pre-cadastro', [CustomerController::class, 'customerPreRegistration']);

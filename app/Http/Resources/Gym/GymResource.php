@@ -43,9 +43,11 @@ class GymResource extends JsonResource
             'description' => $this->description,
             'comforts' => $this->whenLoaded('comforts', fn () => ComfortResource::collection($this->comforts)),
             'tennis_courts' => $this->whenLoaded('tennisCourts', fn () => TennisCourtResource::collection($this->tennisCourts)),
-            'workouts' => $this->whenLoaded('workouts',  fn () => WorkoutResource::collection($this->workouts)),
-            'subscriptions' => $this->whenLoaded('subscriptions',  fn () => SubscriptionResource::collection($this->subscriptions)),
-            'leases' => $this->whenLoaded('leases',  fn () => LeaseResource::collection($this->leases))
+            'business' => [
+                'aulas' => $this->whenLoaded('workouts',  fn () => WorkoutResource::collection($this->workouts)),
+                'assinaturas' => $this->whenLoaded('subscriptions',  fn () => SubscriptionResource::collection($this->subscriptions)),
+                'locações' => $this->whenLoaded('leases',  fn () => LeaseResource::collection($this->leases))
+            ]
         ];
     }
 }

@@ -22,6 +22,16 @@ class Workout extends Model
         parent::updating(fn (Workout $workout) => $workout->slug = 'aulas-' . Str::slug($workout->name));
     }
 
+    public function ebooks()
+    {
+        return $this->hasMany(WorkoutEbook::class);
+    }
+
+    public function ebook()
+    {
+        return $this->hasOne(WorkoutEbook::class);
+    }
+
     public function gyms()
     {
         return $this->belongsToMany(Gym::class, 'gyms_workouts');

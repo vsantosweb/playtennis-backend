@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->unsignedBigInteger('workout_id');
-            $table->string('name');
             $table->string('slug');
+            $table->boolean('is_main')->default(0);
             $table->text('url')->nullable();
-            $table->integer('downloads')->default(0);
+            $table->integer('download_total')->default(0);
             $table->timestamps();
 
             $table->foreign('workout_id')->references('id')->on('workouts')->onDelete('cascade');
