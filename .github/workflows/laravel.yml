@@ -23,6 +23,7 @@ jobs:
     - name: Generate key and set env
       env: 
         DB_PASSWS: ${{ secrets.DB_PASSWORD }}
+        MAIL_SECRET: ${{ secrets.MAIL_SECRET }}
       run: |
         php artisan key:generate
         php artisan env:set APP_URL=PlayTennis
