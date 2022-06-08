@@ -27,7 +27,7 @@ Route::prefix('public')->group(function () {
     Route::get('workouts', [SiteController::class, 'workouts']);
     Route::get('subscriptions', [SiteController::class, 'subscriptions']);
     Route::get('leases', [SiteController::class, 'leases']);
-    Route::get('products', [SiteController::class, 'products']);
+    Route::get('business', [SiteController::class, 'business']);
 
     Route::prefix('customers')->group(function(){
         Route::post('/pre-cadastro', [CustomerController::class, 'customerPreRegistration']);

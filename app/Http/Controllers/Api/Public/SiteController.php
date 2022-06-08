@@ -43,7 +43,7 @@ class SiteController extends Controller
         return $this->outputJSON(SubscriptionResource::collection(Subscription::with('gyms', 'classifications' , 'benefits')->get()));
     }
 
-    public function products()
+    public function business()
     {
         return $this->outputJSON(BusinessResource::collection(Business::with('workouts', 'subscriptions', 'leases')->get()));
     }
