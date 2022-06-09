@@ -32,7 +32,7 @@ Route::prefix('public')->group(function () {
 
     Route::get('contact', [SiteController::class, 'business']);
     
-    Route::post('workouts/ebook-download', [SiteController::class, 'workoutEbookDownload']);
+    Route::post('ebook-download', [SiteController::class, 'ebookDownload']);
 
     Route::prefix('customers')->group(function(){
         Route::post('/pre-registration', [CustomerController::class, 'customerPreRegistration']);

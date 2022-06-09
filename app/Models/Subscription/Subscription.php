@@ -5,6 +5,7 @@ namespace App\Models\Subscription;
 use App\Models\Benefit\Benefit;
 use App\Models\Business\Business;
 use App\Models\Classification;
+use App\Models\Ebook\Ebook;
 use App\Models\Gym\Gym;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,16 @@ class Subscription extends Model
         parent::updating(fn (Subscription $subscription) => $subscription->slug = 'assinaturas-' . Str::slug($subscription->name));
     }
 
+    public function ebooks()
+    {
+        return $this->hasMany(Ebook::class, 'name', 'slug');
+    }
+
+    public function ebook()
+    {
+        return $this->hasOne(Ebook::class, 'name', 'slug');
+    }
+    
     public function gyms()
     {
         return $this->belongsToMany(Gym::class, 'gyms_subscriptions');

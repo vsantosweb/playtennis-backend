@@ -4,6 +4,7 @@ namespace App\Models\Workout;
 
 use App\Models\Benefit\Benefit;
 use App\Models\Business\Business;
+use App\Models\Ebook\Ebook;
 use App\Models\Gym\Gym;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,12 +25,12 @@ class Workout extends Model
 
     public function ebooks()
     {
-        return $this->hasMany(WorkoutEbook::class);
+        return $this->hasMany(Ebook::class, 'name', 'slug');
     }
 
     public function ebook()
     {
-        return $this->hasOne(WorkoutEbook::class);
+        return $this->hasOne(Ebook::class, 'name', 'slug');
     }
 
     public function gyms()

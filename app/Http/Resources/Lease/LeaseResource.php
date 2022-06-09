@@ -40,6 +40,10 @@ class LeaseResource extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'description_1' => $this->description_1,
+            'ebook' => $this->whenLoaded('ebook',  fn () => [
+                'id' => $this->ebook->id,
+                'slug' => $this->ebook->slug
+            ]),
             'gyms' => $this->whenLoaded('gyms',  fn () => GymResource::collection($this->gyms->load('tennisCourts', 'comforts')))
         ];
 

@@ -3,6 +3,7 @@
 namespace App\Models\Lease;
 
 use App\Models\Business\Business;
+use App\Models\Ebook\Ebook;
 use App\Models\Gym\Gym;
 use App\Models\TennisCourt\TennisCourt;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,6 +30,16 @@ class Lease extends Model
         parent::updating(fn (Lease $lease) => $lease->slug = 'locacoes-' . Str::slug($lease->name));
     }
 
+    public function ebooks()
+    {
+        return $this->hasMany(Ebook::class, 'name', 'slug');
+    }
+
+    public function ebook()
+    {
+        return $this->hasOne(Ebook::class, 'name', 'slug');
+    }
+    
     public function gyms()
     {
         return $this->belongsToMany(Gym::class, 'gyms_leases');

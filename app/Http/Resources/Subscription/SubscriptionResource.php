@@ -38,6 +38,10 @@ class SubscriptionResource extends JsonResource
             'business' => $this->business->slug,
             'slug' => $this->slug,
             'description' => $this->description,
+            'ebook' => $this->whenLoaded('ebook',  fn () => [
+                'id' => $this->ebook->id,
+                'slug' => $this->ebook->slug
+            ]),
             'gyms' => $this->whenLoaded('gyms',  fn () => GymResource::collection($this->gyms->load('tennisCourts', 'comforts'))),
             'classifications' => $this->whenLoaded('classifications',  fn () => $this->classifications),
             'benefits' =>   $this->whenLoaded('benefits',  fn () => BenefitResource::collection($this->benefits)),
