@@ -44,7 +44,8 @@ jobs:
         php artisan env:set MAIL_ENCRYPTION=tls
         php artisan env:set MAIL_FROM_ADDRESS=souzavito@hotmail.com
         php artisan env:set MAIL_FROM_NAME=PlayTennis
-
+        php artisan storage:link
+        
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Generate deployment package

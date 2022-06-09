@@ -35,6 +35,6 @@ Route::prefix('public')->group(function () {
     Route::post('workouts/ebook-download', [SiteController::class, 'workoutEbookDownload']);
 
     Route::prefix('customers')->group(function(){
-        Route::post('/pre-cadastro', [CustomerController::class, 'customerPreRegistration']);
+        Route::post('/pre-registration', [CustomerController::class, 'customerPreRegistration']);
     });
 });
