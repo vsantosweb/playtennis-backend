@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Storage;
 class SiteController extends Controller
 {
     public function gyms()
-    {
+    {   
         return $this->outputJSON(GymResource::collection(Gym::with('comforts', 'tennisCourts', 'workouts', 'subscriptions', 'leases')->get()));
     }
 
@@ -82,7 +82,7 @@ class SiteController extends Controller
     public function ebookDownload(Request $request)
     {
         $download = EbookDowload::firstOrCreate($request->all());
-        
+
         $download->ebook->update(['download_total' =>  count($download->ebook->downloads)]);
 
         $download->notify(new EbookDownloadNotification($download->ebook->url));

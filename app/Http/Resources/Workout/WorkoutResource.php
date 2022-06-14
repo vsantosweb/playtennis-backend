@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Workout;
 
 use App\Http\Resources\Benefit\BenefitResource;
+use App\Http\Resources\Ebook\EbookResource;
 use App\Http\Resources\Gym\GymResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -40,10 +41,7 @@ class WorkoutResource extends JsonResource
             'business' => $this->business->slug,
             'slug' => $this->slug,
             'description' => $this->description,
-            'ebook' => $this->whenLoaded('ebook',  fn () => [
-                'id' => $this->ebook->id,
-                'slug' => $this->ebook->slug
-            ]),
+            'ebook' => $this->whenLoaded('ebook',  fn () => new EbookResource($this->ebook) ),
             'gyms' => $this->whenLoaded('gyms',  fn () => GymResource::collection($this->gyms->load('tennisCourts', 'comforts'))),
             'benefits' =>   $this->whenLoaded('benefits',  fn () => BenefitResource::collection($this->benefits)),
 
