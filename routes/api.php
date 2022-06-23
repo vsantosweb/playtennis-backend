@@ -22,6 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('public')->group(function () {
     Route::get('gyms', [SiteController::class, 'gyms']);
+    Route::get('schedule', [SiteController::class, 'schedule']);
+    Route::get('schedule/{code}', [SiteController::class, 'scheduleEvent']);
+    Route::get('events-categories', [SiteController::class, 'eventsByCategory']);
     Route::get('gyms/{slug}', [SiteController::class, 'showGym']);
     Route::get('partners', [SiteController::class, 'partners']);
     Route::get('workouts', [SiteController::class, 'workouts']);
@@ -31,10 +34,10 @@ Route::prefix('public')->group(function () {
     Route::get('products/{slug}', [SiteController::class, 'showProduct']);
 
     Route::get('contact', [SiteController::class, 'business']);
-    
+
     Route::post('ebook-download', [SiteController::class, 'ebookDownload']);
 
-    Route::prefix('customers')->group(function(){
+    Route::prefix('customers')->group(function () {
         Route::post('/pre-registration', [CustomerController::class, 'customerPreRegistration']);
     });
 });

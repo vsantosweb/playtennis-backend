@@ -3,6 +3,7 @@
 namespace App\Models\Gym;
 
 use App\Models\Comfort\Comfort;
+use App\Models\Event\Event;
 use App\Models\Lease\Lease;
 use App\Models\Locale\City;
 use App\Models\Subscription\Subscription;
@@ -67,5 +68,16 @@ class Gym extends Model
     public function leases()
     {
         return $this->belongsToMany(Lease::class, 'gyms_leases');
+    }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'event_schedules')->withPivot(
+            'start_at',
+            'end_at',
+            'registration_start_date',
+            'registration_end_date',
+            'vacancies',
+        );
     }
 }

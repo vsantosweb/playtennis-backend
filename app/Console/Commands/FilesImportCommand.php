@@ -8,6 +8,7 @@ use App\Imports\BusinessImport;
 use App\Imports\CheckListProblemImport;
 use App\Imports\ClassificationImport;
 use App\Imports\ComfortImport;
+use App\Imports\EventImport;
 use App\Imports\GymComfortImport;
 use App\Imports\GymCourtImport;
 use App\Imports\GymImport;
@@ -74,6 +75,7 @@ class FilesImportCommand extends Command
         Excel::import(new GymLeaseImport, public_path() . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'locacoes_x_unidades.xlsx');
         Excel::import(new SubscriptionClassificationImport, public_path() . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'assinaturas_x_classificacoes.xlsx');
         Excel::import(new BenefitsImport, public_path() . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'beneficios_x_produtos.xlsx');
+        Excel::import(new EventImport, public_path() . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'eventos.xlsx');
 
     }
 }

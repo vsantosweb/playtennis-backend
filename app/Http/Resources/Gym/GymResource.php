@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Gym;
 
 use App\Http\Resources\Comfort\ComfortResource;
+use App\Http\Resources\Event\EventResource;
 use App\Http\Resources\Lease\LeaseResource;
 use App\Http\Resources\Subscription\SubscriptionResource;
 use App\Http\Resources\TennisCourt\TennisCourtResource;
@@ -21,6 +22,7 @@ class GymResource extends JsonResource
     {
 
         $geo = explode(',', $this->geolocation);
+
         return [
             'uuid' => $this->uuid,
             'name' => $this->name,
@@ -43,6 +45,7 @@ class GymResource extends JsonResource
             'description' => $this->description,
             'comforts' => $this->whenLoaded('comforts', fn () => ComfortResource::collection($this->comforts)),
             'tennis_courts' => $this->whenLoaded('tennisCourts', fn () => TennisCourtResource::collection($this->tennisCourts)),
+            'events' => $this->whenLoaded('events', fn () => EventResource::collection($this->events)),
             'business' => [
                 'aulas' => $this->whenLoaded('workouts',  fn () => WorkoutResource::collection($this->workouts)),
                 'assinaturas' => $this->whenLoaded('subscriptions',  fn () => SubscriptionResource::collection($this->subscriptions)),
