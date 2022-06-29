@@ -25,6 +25,7 @@ use App\Models\Workout\WorkoutEbookDownload;
 use App\Notifications\Ebook\EbookDownloadNotification;
 use App\Notifications\Workout\WorkoutEbookDownloadNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class SiteController extends Controller
@@ -98,7 +99,7 @@ class SiteController extends Controller
 
     public function schedule()
     {
-        return $this->outputJSON(EventScheduleResource::collection(EventSchedule::with('event')->orderBy('start_at','DESC')->get()));
+        return $this->outputJSON(EventScheduleResource::collection(EventSchedule::with('event')->orderBy('start_at', 'DESC')->get()));
     }
 
     public function scheduleEvent($code)
@@ -109,5 +110,26 @@ class SiteController extends Controller
     public function eventsByCategory()
     {
         return $this->outputJSON(EventCategoryResource::collection(EventCategory::with('events')->get()));
+    }
+
+    public function contactForm(Request $request)
+    {
+   
+        Mail::send('mails.contact_mail', [
+
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'phone' => $request->phone,
+            'content' => $request->message,
+            'subsidiary' => $request->subsidiary,
+
+        ], function ($message) use ($request) {
+            $message->from(env('MAIL_FROM_ADDRESS'));
+            $message->subject($request->subject);
+            $message->to('atendimento@playtennis.com.br');
+        });
+
+        return $this->outputJSON([], 'success');
     }
 }

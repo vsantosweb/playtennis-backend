@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
@@ -28,6 +29,17 @@ class CustomerController extends Controller
             'customer_status_id' => 2,
             'password' => Hash::make('playtennis2021@#!C')
         ]);
+
+        Mail::send('mails.pre_registration', [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+        ], function ($message) use ($request) {
+            $message->from(env('MAIL_FROM_ADDRESS'));
+            $message->subject('Pré cadastro');
+            $message->to('atendimento@playtennis.com.br');
+            // $message->to('souzavito@hotmail.com');
+        });
 
         return $this->outputJSON($customer, 'success', false, 201);
     }

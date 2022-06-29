@@ -33,7 +33,6 @@ class EventImport implements ToCollection
 
             $gym = Gym::where('name', $column[7])->first();
 
-
             $gym->events()->syncWithoutDetaching(
                 [
                     $event->id => [

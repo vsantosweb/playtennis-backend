@@ -40,4 +40,6 @@ Route::prefix('public')->group(function () {
     Route::prefix('customers')->group(function () {
         Route::post('/pre-registration', [CustomerController::class, 'customerPreRegistration']);
     });
+
+    Route::post('contact-form', [SiteController::class, 'contactForm']);
 });
