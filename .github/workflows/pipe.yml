@@ -24,15 +24,17 @@ jobs:
       env: 
         DB_PASSWS: ${{ secrets.DB_PASSWORD }}
         MAIL_SECRET: ${{ secrets.MAIL_SECRET }}
+        DB_HOST: ${{ secrets.DB_HOST}}
+        DB_USER: ${{ secrets.DB_USER }}
       run: |
         php artisan key:generate
         php artisan env:set APP_DEBUG=false
-        php artisan env:set APP_URL=http://api-playtennis.sa-east-1.elasticbeanstalk.com
+        php artisan env:set APP_URL=hplaytennis.chlxztkd2ael.sa-east-1.rds.amazonaws.com
         
         php artisan env:set DB_PORT=3306
-        php artisan env:set DB_HOST=playtennisdb.ciyggvszmd6k.sa-east-1.rds.amazonaws.com
-        php artisan env:set DB_DATABASE=playtennis
-        php artisan env:set DB_USERNAME=playtennis
+        php artisan env:set DB_HOST=$DB_HOST
+        php artisan env:set DB_DATABASE=$DB_USER
+        php artisan env:set DB_USERNAME=$DB_USER
         php artisan env:set DB_PASSWORD=$DB_PASSWS
 
         php artisan env:set MAIL_MAILER=smtp
@@ -61,7 +63,7 @@ jobs:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: playtennis
-        environment_name: playtennis-env
+        environment_name: Playtennis-env
         version_label: 'alpha-1.0.1'
         region: sa-east-1
         deployment_package: deploy.zip
