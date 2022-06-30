@@ -63,8 +63,8 @@ jobs:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: playtennis
-        environment_name: Playtennis-env
-        version_label: 'alpha-1.0.1'
+        environment_name: playtennis-env
+        version_label: 'alpha-1.0.4'
         region: sa-east-1
         deployment_package: deploy.zip
         use_existing_version_if_available: true
